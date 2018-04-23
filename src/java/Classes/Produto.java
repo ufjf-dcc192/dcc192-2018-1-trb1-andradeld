@@ -2,12 +2,22 @@ package Classes;
 
 public class Produto{
     
+    private int cod_prod;
     private String nome_item;
     private double preco_item;
 
-    public Produto(String nome_item, double preco_item) {
+    public Produto(int cod_prod, String nome_item, double preco_item) {
+        this.cod_prod = cod_prod;
         this.nome_item = nome_item;
         this.preco_item = preco_item;
+    }
+
+    public int getCod_prod() {
+        return cod_prod;
+    }
+
+    public void setCod_prod(int cod_prod) {
+        this.cod_prod = cod_prod;
     }
 
     public String getNome_item() {
@@ -25,9 +35,8 @@ public class Produto{
     public void setPreco_item(double preco_item) {
         this.preco_item = preco_item;
     }
-    
-    
 
+    
     
 }
 

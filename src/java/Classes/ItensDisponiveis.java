@@ -13,8 +13,8 @@ public class ItensDisponiveis {
     public static List<Produto> getInstance() {
         if (disponiveis == null) {
             disponiveis = new ArrayList<>();
-            disponiveis.add(new Produto("Pao", 10.00));
-            disponiveis.add(new Produto("Bife", 20));
+            disponiveis.add(new Produto(01, "Pao", 10.00));
+            disponiveis.add(new Produto(02, "Bife", 20.80));
         }
         return disponiveis;
     }

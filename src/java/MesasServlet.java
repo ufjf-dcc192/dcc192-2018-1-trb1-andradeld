@@ -1,39 +1,32 @@
 import Classes.Mesa;
+import Classes.MesasDisponiveis;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/MesasServlet"})
+@WebServlet(urlPatterns = {"/mesa.html"})
 public class MesasServlet extends HttpServlet {
-
-    List<Mesa> mesas = new ArrayList<>();
-    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            Mesa mesa1 = new Mesa(1, true, null);
-            
-            mesas.add(mesa1);
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MesaServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Hamburguer daKsa</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        if ("/mesa.html".equals(request.getServletPath())) {
+            listarMesas(request, response);
+        } 
+    }
+
+    private void listarMesas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+            List<Mesa> mesas = MesasDisponiveis.getInstance();
+            //despachante
+            request.setAttribute("mesas", mesas);
+            RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-mesas.jsp");
+            despachante.forward(request, response);
+
     }
 }
