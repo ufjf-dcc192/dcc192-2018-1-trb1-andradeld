@@ -1,7 +1,6 @@
 package Classes;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Pedido {
@@ -56,6 +55,5 @@ public class Pedido {
     public  List<Produto> getProdutos() {
         return produtos;
     }
-
     
 }

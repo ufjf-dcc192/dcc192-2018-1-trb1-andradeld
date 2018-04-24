@@ -35,8 +35,6 @@ public class Produto{
     public void setPreco_item(double preco_item) {
         this.preco_item = preco_item;
     }
-
-    
     
 }
 

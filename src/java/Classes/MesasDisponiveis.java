@@ -18,6 +18,9 @@ public class MesasDisponiveis {
             disponiveis.add(new Mesa(3));
             disponiveis.add(new Mesa(4));
             disponiveis.add(new Mesa(5));
+            disponiveis.add(new Mesa(6));
+            disponiveis.add(new Mesa(7));
+            disponiveis.add(new Mesa(8));
         }
         return disponiveis;
     }

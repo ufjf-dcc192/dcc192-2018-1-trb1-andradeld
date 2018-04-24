@@ -1,9 +1,4 @@
-
 package Classes;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Mesa {
 
@@ -42,9 +37,6 @@ public class Mesa {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
-    
-    
-    
 }
 
 

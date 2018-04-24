@@ -1,9 +1,3 @@
-<%-- 
-    Document   : fazer-pedido
-    Created on : 23/04/2018, 21:13:14
-    Author     : Anderson Andrade
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
