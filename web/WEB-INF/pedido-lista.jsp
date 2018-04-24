@@ -1,26 +1,25 @@
 <%-- 
-    Document   : listar-pedido
-    Created on : 23/04/2018, 15:35:14
+    Document   : pedido-lista
+    Created on : 23/04/2018, 22:33:24
     Author     : Anderson Andrade
 --%>
 
+<%@page import="Classes.Pedido"%>
 <%@page import="java.util.List"%>
-<%@page import="Classes.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    List<Produto> pedidos = (List<Produto>) request.getAttribute("pedidos"); %>
+
 <!DOCTYPE html>
 <html>
     <head>
+        <%
+    List<Pedido> pedidos = (List<Pedido>) request.getAttribute("pedidos"); %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
-        <%
+    <body><%
         for (int i=0; i<pedidos.size(); i++){
          %>
-        <p><%=pedidos.get(i) %></p>
-        
-        <%}%>
+         <p><%=pedidos.get(i) %></p>
+         <%}%>
     </body>
 </html>

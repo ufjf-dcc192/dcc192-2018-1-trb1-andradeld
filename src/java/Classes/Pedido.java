@@ -5,15 +5,30 @@ import java.util.Date;
 import java.util.List;
 
 public class Pedido {
-
+    
+    private int num_ped = 0;
+    private static int cont_ped = 0;
+    double valotTotal = 0;
     private String data_abertura_ped;
     private String data_fechamento_ped;
     private boolean aberto_ped;
-    private static List<Produto> produtos = new ArrayList<>();
+    private  List<Produto> produtos = new ArrayList<>();
 
-    public Pedido() {
-    }
     
+    
+    public Pedido() {
+        this.num_ped = this.cont_ped+ this.num_ped;
+        this.cont_ped++;
+    }
+
+    public int getNum_ped() {
+        return num_ped;
+    }
+
+    public void setNum_ped(int num_ped) {
+        this.num_ped = num_ped;
+    }
+
     public String getData_abertura_ped() {
         return data_abertura_ped;
     }
@@ -38,12 +53,8 @@ public class Pedido {
         this.aberto_ped = aberto_ped;
     }
 
-    public static List<Produto> getProdutos() {
+    public  List<Produto> getProdutos() {
         return produtos;
-    }
-
-    public static void setProdutos(List<Produto> produtos) {
-        Pedido.produtos = produtos;
     }
 
     
