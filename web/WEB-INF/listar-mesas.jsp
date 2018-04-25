@@ -12,12 +12,22 @@
         <%@include file ="jspf/cabecalho.jspf"%>
     </head>
     <body>
-        <%
-            for (int i = 0; i < mesas.size(); i++) {%>
-        <p>
-            <%= mesas.get(i).getCod_mesa()%>
-            <%= mesas.get(i).isDisponivel_mesa()%>
-        </p>
+        <table>
+        <%for (int i = 0; i < mesas.size(); i++) {%>
+            <tr>
+                <td>
+                <p><%= mesas.get(i).getCod_mesa()%></p>
+                </td>
+                <td>
+                <%if(mesas.get(i).isDisponivel_mesa() == true){%>
+                     <p style="color:blue">Disponível</p>
+                <%}%>
+                <%if(mesas.get(i).isDisponivel_mesa() == false){%>
+                     <p style="color:red">Ocupada</p>
+                <%}%>
+                </td>
+            </tr>
         <%}%>
+        </table>
     </body>
 </html>

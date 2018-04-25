@@ -1,7 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <table >
     <tr>
-        <td>Taiyo Sushi Bar</td><br>
+        <td>Taiyo Sushi Bar</td>
+    </tr>
+    <tr>
+        <td></td>
         <td><a href="index.html">Início</a></td>
         <td><a href="listar_produtos.html">Produtos</a></td>
         <td><a href="checar_mesas.html">Checar mesas</a></td>

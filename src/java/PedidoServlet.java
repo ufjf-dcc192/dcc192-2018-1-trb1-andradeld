@@ -143,7 +143,8 @@ public class PedidoServlet extends HttpServlet {
         mesas.get(pedidos.get(cod_ped).getNum_mesa()-1).setDisponivel_mesa(true);
         
        request.setAttribute("pedidos", pedidos);
-       RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-pedidos.jsp");
+       request.setAttribute("cod_ped", cod_ped);
+       RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/pedido-fechado.jsp");
        despachante.forward(request, response);
        response.sendRedirect("index.html");
     }
