@@ -58,25 +58,24 @@ public class PedidoServlet extends HttpServlet {
     }
 
     private void novoPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //criando pedido
-        Pedido p = new Pedido();
-        pedidos.add(p);
-        //criando e alterando data
-        Date date = new Date();
-        calendar.setTime(date);
-        p.setData_abertura_ped(calendar.getTime());
-        p.setAberto_ped(true);
-        //verificando mesa disponivel
+                //verificando mesa disponivel
         for (int i = 0; i<mesas.size(); i++){
             if(mesas.get(i).isDisponivel_mesa() == true){
-                p.setNum_mesa(i);
+                //criando pedido
+                Pedido p = new Pedido();
+                pedidos.add(p);
+                //criando e alterando data
+                Date date = new Date();
+                calendar.setTime(date);
+                p.setData_abertura_ped(calendar.getTime());
+                p.setAberto_ped(true);
+                p.setNum_mesa(mesas.get(i).getCod_mesa());
                 mesas.get(i).setDisponivel_mesa(false);
                 request.setAttribute("pedidos", pedidos);
                 request.setAttribute("cod_ped", i);
                 RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/exibir-pedido.jsp");
                 despachante.forward(request, response);
-            } else {
-                
+                break;
             }
         }
             //Não tem mesas disponiveis, aguarde...
@@ -111,6 +110,7 @@ public class PedidoServlet extends HttpServlet {
         for (int i = 0; i < pedidos.size(); i++) {
             if (pedidos.get(i).getNum_ped() == cod_ped) {
                 pedidos.get(i).getProdutos().add(pr1);
+                pedidos.get(i).setValotTotal(preco*quantidade);
                 break;
             }
         }

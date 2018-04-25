@@ -43,7 +43,7 @@ public class Pedido {
     }
 
     public void setValotTotal(double valotTotal) {
-        this.valotTotal = valotTotal;
+        this.valotTotal = valotTotal + this.valotTotal;
     }
 
     public Date getData_abertura_ped() {

@@ -3,12 +3,11 @@ package Classes;
 public class Mesa {
 
     
-    private static int cod_mesa;
-    private boolean disponivel_mesa;
+    private int cod_mesa;
+    private boolean disponivel_mesa = true;
 
-    public Mesa(int num) {
-        disponivel_mesa = true;
-        cod_mesa = num;
+    public Mesa(int cod_mesa1) {
+        this.cod_mesa = cod_mesa1;
     }
 
     public int getCod_mesa() {
