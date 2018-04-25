@@ -3,15 +3,12 @@ package Classes;
 public class Mesa {
 
     
-    private int cod_mesa;
+    private static int cod_mesa;
     private boolean disponivel_mesa;
-    private Pedido pedido;
 
-    public Mesa(int cod_mesa) {
-        this.cod_mesa = cod_mesa;
+    public Mesa(int num) {
         disponivel_mesa = true;
-        pedido = null;
-        
+        cod_mesa = num;
     }
 
     public int getCod_mesa() {
@@ -28,14 +25,6 @@ public class Mesa {
 
     public void setDisponivel_mesa(boolean disponivel_mesa) {
         this.disponivel_mesa = disponivel_mesa;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
     }
 }
 

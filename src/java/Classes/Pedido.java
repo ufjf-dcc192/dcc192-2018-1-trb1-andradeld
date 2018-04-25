@@ -1,16 +1,18 @@
 package Classes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Pedido {
     
-    private int num_ped = 0;
+    private int num_ped = 1;
     private static int cont_ped = 0;
     double valotTotal = 0;
-    private String data_abertura_ped;
-    private String data_fechamento_ped;
+    private Date data_abertura_ped;
+    private Date data_fechamento_ped;
     private boolean aberto_ped;
+    private int num_mesa;
     private  List<Produto> produtos = new ArrayList<>();
 
     
@@ -28,19 +30,35 @@ public class Pedido {
         this.num_ped = num_ped;
     }
 
-    public String getData_abertura_ped() {
+    public static int getCont_ped() {
+        return cont_ped;
+    }
+
+    public static void setCont_ped(int cont_ped) {
+        Pedido.cont_ped = cont_ped;
+    }
+
+    public double getValotTotal() {
+        return valotTotal;
+    }
+
+    public void setValotTotal(double valotTotal) {
+        this.valotTotal = valotTotal;
+    }
+
+    public Date getData_abertura_ped() {
         return data_abertura_ped;
     }
 
-    public void setData_abertura_ped(String data_abertura_ped) {
+    public void setData_abertura_ped(Date data_abertura_ped) {
         this.data_abertura_ped = data_abertura_ped;
     }
 
-    public String getData_fechamento_ped() {
+    public Date getData_fechamento_ped() {
         return data_fechamento_ped;
     }
 
-    public void setData_fechamento_ped(String data_fechamento_ped) {
+    public void setData_fechamento_ped(Date data_fechamento_ped) {
         this.data_fechamento_ped = data_fechamento_ped;
     }
 
@@ -52,8 +70,21 @@ public class Pedido {
         this.aberto_ped = aberto_ped;
     }
 
-    public  List<Produto> getProdutos() {
+    public int getNum_mesa() {
+        return num_mesa;
+    }
+
+    public void setNum_mesa(int num_mesa) {
+        this.num_mesa = num_mesa;
+    }
+
+    public List<Produto> getProdutos() {
         return produtos;
     }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
     
 }

@@ -7,9 +7,7 @@ public class PedidosAbertos {
     private static List<Pedido> aberto;
     
     public static List<Pedido> getInstance() {
-            aberto = new ArrayList<>();
-            aberto.add(new Pedido());
-            
+            aberto = new ArrayList<>();            
         return aberto;
     }
     
