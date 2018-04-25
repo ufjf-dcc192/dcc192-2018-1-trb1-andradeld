@@ -14,6 +14,7 @@
         <title>Taiyo Sushi Bar</title>
     </head>
     <body>
+        <a href="index.html">Início</a><br>
         <h1>Pedido <%=cod_ped+1%></h1>
         <p>Status: <%=pedidos.get(cod_ped).isAberto_ped()%></p>
         <p>Data abertura: <%=pedidos.get(0).getData_abertura_ped()%></p>

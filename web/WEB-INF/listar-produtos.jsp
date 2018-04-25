@@ -10,6 +10,7 @@
         <title>Taiyo Sushi Bar</title>
     </head>
     <body>
+        <a href="index.html">Início</a><br>
         <%
             for (int i = 0; i < produtos.size(); i++) {
         %>

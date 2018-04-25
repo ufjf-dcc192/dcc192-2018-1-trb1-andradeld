@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Taiyo Sushi Bar</title>
     </head>
+    <body>
         <a href="index.html">Início</a><br>
         <a href="novo_pedido.html">Novo pedido</a><br>
         <h1>Pedidos abertos:</h1>

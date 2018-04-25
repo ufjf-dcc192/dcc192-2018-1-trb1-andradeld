@@ -11,6 +11,7 @@
         <title>Taiyo Sushi Bar</title>
     </head>
     <body>
+        <a href="index.html">Início</a><br>
         <%
             for (int i = 0; i < mesas.size(); i++) {%>
         <p>

@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Taiyo Sushi Bar</title>
     </head>
-    <body>        
+    <body>
+        <a href="index.html">Início</a><br>
         <h1>Adicionar Produto</h1>
         <form method="POST">
             <label>Codigo Pedido</label>

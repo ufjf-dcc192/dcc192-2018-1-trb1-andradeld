@@ -78,10 +78,9 @@ public class PedidoServlet extends HttpServlet {
                 break;
             }
         }
-            //Não tem mesas disponiveis, aguarde...
-            response.sendRedirect("index.html");
-        
-
+            //Não tem mesas disponiveis, aguarde...            
+            RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/erro-mesa.jsp");
+            despachante.forward(request, response);
     }
 
     private void addItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -109,7 +108,6 @@ public class PedidoServlet extends HttpServlet {
         }
 
         Produto pr1 = (new Produto(cod_prod, produtoNome, preco, quantidade));
-
         for (int i = 0; i < pedidos.size(); i++) {
             if (pedidos.get(i).getNum_ped() == cod_ped) {
                 pedidos.get(i).getProdutos().add(pr1);
@@ -117,9 +115,7 @@ public class PedidoServlet extends HttpServlet {
                 break;
             }
         }
-        
         response.sendRedirect("index.html");
-
     }
 
     private void listarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
