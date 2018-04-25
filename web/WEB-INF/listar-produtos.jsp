@@ -8,9 +8,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Taiyo Sushi Bar</title>
+        <%@include file ="jspf/cabecalho.jspf"%>
     </head>
     <body>
-        <a href="index.html">Início</a><br>
         <%
             for (int i = 0; i < produtos.size(); i++) {
         %>

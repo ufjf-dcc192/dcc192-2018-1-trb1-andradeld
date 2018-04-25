@@ -8,13 +8,14 @@ public class Pedido {
     
     private int num_ped = 1;
     private static int cont_ped = 0;
-    double valotTotal = 0;
+    private double valotTotal = 0;
     private Date data_abertura_ped;
     private Date data_fechamento_ped;
     private boolean aberto_ped;
     private int num_mesa;
     private  List<Produto> produtos = new ArrayList<>();
 
+    
     
     
     public Pedido() {
@@ -30,7 +31,7 @@ public class Pedido {
         this.num_ped = num_ped;
     }
 
-    public static int getCont_ped() {
+    public int getCont_ped() {
         return cont_ped;
     }
 

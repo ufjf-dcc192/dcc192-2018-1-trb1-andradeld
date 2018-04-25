@@ -5,7 +5,6 @@ import Classes.MesasDisponiveis;
 import Classes.Pedido;
 import Classes.PedidosAbertos;
 import Classes.Produto;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/add_produto_pedido.html", "/exibir_pedido.html", "/listar_pedidos.html", "/novo_pedido.html", "/fechar_pedido.html.html"})
+@WebServlet(urlPatterns = {"/add_produto_pedido.html", "/exibir_pedido.html", "/listar_pedidos.html", "/novo_pedido.html", "/fechar_pedido.html"})
 public class PedidoServlet extends HttpServlet {
 
     List<Pedido> pedidos = PedidosAbertos.getInstance();
@@ -27,6 +26,7 @@ public class PedidoServlet extends HttpServlet {
     String produtoNome;
     double preco;
     int cod_ped;
+    int quantidade;
     
     Calendar calendar = new GregorianCalendar();
 
@@ -48,7 +48,7 @@ public class PedidoServlet extends HttpServlet {
                 case "/fechar_pedido.html":
                     fecharPedido(request, response);
                     break;
-                case "/exibir_pedido.html.html":
+                case "/exibir_pedido.html":
                     exibirPedido(request, response);
                     break; 
                 default:
@@ -72,7 +72,7 @@ public class PedidoServlet extends HttpServlet {
                 p.setNum_mesa(mesas.get(i).getCod_mesa());
                 mesas.get(i).setDisponivel_mesa(false);
                 request.setAttribute("pedidos", pedidos);
-                request.setAttribute("cod_ped", i);
+                request.setAttribute("cod_ped", p.getNum_ped()-1);
                 RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/exibir-pedido.jsp");
                 despachante.forward(request, response);
                 break;
@@ -97,7 +97,12 @@ public class PedidoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int cod_ped = Integer.parseInt(request.getParameter("cod_ped"));
         int cod_prod = Integer.parseInt(request.getParameter("cod_prod"));
-        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        try{
+            quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        } catch(NumberFormatException e){
+            quantidade = 1;
+        }
+        
         for (int i = 0; i < produto.size(); i++) {
             if (produto.get(i).getCod_prod() == cod_prod) {
                 produtoNome = produto.get(i).getNome_item();
@@ -110,12 +115,14 @@ public class PedidoServlet extends HttpServlet {
         Produto pr1 = (new Produto(cod_prod, produtoNome, preco, quantidade));
         for (int i = 0; i < pedidos.size(); i++) {
             if (pedidos.get(i).getNum_ped() == cod_ped) {
-                pedidos.get(i).getProdutos().add(pr1);
                 pedidos.get(i).setValotTotal(preco*quantidade);
+                pedidos.get(i).getProdutos().add(pr1);
                 break;
             }
         }
-        response.sendRedirect("index.html");
+        request.setAttribute("pedidos", pedidos);
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-pedidos.jsp");
+        despachante.forward(request, response);
     }
 
     private void listarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -132,6 +139,8 @@ public class PedidoServlet extends HttpServlet {
         pedidos.get(cod_ped).setData_fechamento_ped(calendar.getTime());
         //alterando status do pedido
         pedidos.get(cod_ped).setAberto_ped(false);
+        //liberar mesa
+        mesas.get(pedidos.get(cod_ped).getNum_mesa()-1).setDisponivel_mesa(true);
         
        request.setAttribute("pedidos", pedidos);
        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-pedidos.jsp");
@@ -140,7 +149,7 @@ public class PedidoServlet extends HttpServlet {
     }
     
     private void exibirPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("pedidos", pedidos);
+        request.setAttribute("pedidos", pedidos); 
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/exibir-pedido.jsp");
         despachante.forward(request, response);
     }

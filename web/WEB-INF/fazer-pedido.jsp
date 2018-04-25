@@ -11,17 +11,22 @@
         %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Taiyo Sushi Bar</title>
+        <%@include file ="jspf/cabecalho.jspf"%>
     </head>
     <body>
         <a href="index.html">Início</a><br>
         <h1>Adicionar Produto</h1>
         <form method="POST">
-            <label>Codigo Pedido</label>
-            <input type="text" value="<%=cod_ped%>" name="cod_ped" readonly>
-            <label>Codigo Produto</label>
-            <input type="text" name="cod_prod">
-            <label>Quantidade Produto</label>
-            <input type="text" name="quantidade">
+            <label>Código Pedido</label>
+            <input type="text" value="<%=cod_ped%>" name="cod_ped" size="1" readonly>
+            <label>Código Produto</label>
+            <select name="cod_prod">
+                <%for (int i = 0; i < produtos.size(); i++) {%>
+                    <option value="<%=produtos.get(i).getCod_prod()%>"><%=produtos.get(i).getCod_prod() %> - <%=produtos.get(i).getNome_item() %></option>
+                <%}%>  
+            </select>
+            <label>Quantidade</label>
+            <input type="number" name="quantidade" min="1" max="99" value="1">
             <input type="submit">
         </form>
         <h2>Produtos disponíveis</h2>
