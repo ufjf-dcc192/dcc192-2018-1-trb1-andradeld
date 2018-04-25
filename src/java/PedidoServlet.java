@@ -45,7 +45,7 @@ public class PedidoServlet extends HttpServlet {
                 case "/add_produto_pedido.html":
                     addItem(request, response);
                     break;
-                case "/fechar_pedido.html.html":
+                case "/fechar_pedido.html":
                     fecharPedido(request, response);
                     break;
                 case "/exibir_pedido.html.html":
@@ -85,7 +85,9 @@ public class PedidoServlet extends HttpServlet {
     }
 
     private void addItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int cod_ped = Integer.parseInt(request.getParameter("cod_ped"));
         List<Produto> produtos = ItensDisponiveis.getInstance();
+        request.setAttribute("cod_ped", cod_ped);
         request.setAttribute("produtos", produtos);
         
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/fazer-pedido.jsp");
@@ -101,11 +103,12 @@ public class PedidoServlet extends HttpServlet {
             if (produto.get(i).getCod_prod() == cod_prod) {
                 produtoNome = produto.get(i).getNome_item();
                 preco = produto.get(i).getPreco_item();
+                produto.get(i).setQuant(quantidade);
                 break;
             }
         }
 
-        Produto pr1 = (new Produto(cod_prod, produtoNome, preco));
+        Produto pr1 = (new Produto(cod_prod, produtoNome, preco, quantidade));
 
         for (int i = 0; i < pedidos.size(); i++) {
             if (pedidos.get(i).getNum_ped() == cod_ped) {
@@ -126,9 +129,17 @@ public class PedidoServlet extends HttpServlet {
     }
     
     private void fecharPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       // request.setAttribute("pedidos", pedidos);
-       // RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-pedidos.jsp");
-       // despachante.forward(request, response);
+       int cod_ped = Integer.parseInt(request.getParameter("cod_ped"));
+       //criando e alterando data
+        Date date = new Date();
+        calendar.setTime(date);
+        pedidos.get(cod_ped).setData_fechamento_ped(calendar.getTime());
+        //alterando status do pedido
+        pedidos.get(cod_ped).setAberto_ped(false);
+        
+       request.setAttribute("pedidos", pedidos);
+       RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/listar-pedidos.jsp");
+       despachante.forward(request, response);
        response.sendRedirect("index.html");
     }
     
